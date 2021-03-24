@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentResource {
     @Autowired
     private PaymentService paymentService;
+
+    @GetMapping(value="/teste")
+    public ResponseEntity<String> teste(){return ResponseEntity.ok("Teste funcionando");}
     
     @GetMapping(value="/{workerId}/days/{days}")
     public ResponseEntity<Payment> getPayment(@PathVariable Long workerId, @PathVariable Integer days){
