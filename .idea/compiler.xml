@@ -10,10 +10,12 @@
         <module name="hr-payroll" />
         <module name="ms-eureka-server" />
         <module name="hr-worker" />
+        <module name="hr-api-gateway-zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo" target="11" />
+      <module name="hr-api-gateway-zuul" target="11" />
       <module name="hr-payroll" target="1.8" />
       <module name="hr-worker" target="1.8" />
       <module name="java_ms" target="11" />
@@ -23,6 +25,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
+      <module name="hr-api-gateway-zuul" options="-parameters" />
       <module name="hr-payroll" options="-parameters" />
       <module name="hr-worker" options="-parameters" />
       <module name="java_ms" options="-parameters" />
