@@ -36,7 +36,7 @@ public class UserResource {
     }
 
     @GetMapping(value = "/search")
-    public ResponseEntity<User> findById(@RequestParam String email) {
+    public ResponseEntity<User> findByEmail(@RequestParam String email) {
         Optional<User> user = Optional.ofNullable(userRepo.findByEmail(email));
         return user.isPresent() ? ResponseEntity.ok(user.get()) : ResponseEntity.noContent().build();
     }
