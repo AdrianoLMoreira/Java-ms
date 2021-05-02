@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface WorkerFeignClient {
 
         @GetMapping(value = "/{id}")
-        ResponseEntity<Worker> findById(@PathVariable Long id);
+        ResponseEntity<Worker> findById(@PathVariable("id") Long id);
 
 }
