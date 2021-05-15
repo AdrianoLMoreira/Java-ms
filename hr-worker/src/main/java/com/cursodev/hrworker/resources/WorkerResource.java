@@ -1,7 +1,9 @@
 package com.cursodev.hrworker.resources;
 
+import com.cursodev.hrworker.dto.MessageDto;
 import com.cursodev.hrworker.entities.Worker;
 import com.cursodev.hrworker.repositories.WorkerRepository;
+import com.cursodev.hrworker.services.AmqpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +24,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerResource {
+
+    @Autowired
+    private AmqpService serviceAmqp;
 
     private final static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
 
@@ -36,6 +42,9 @@ public class WorkerResource {
     @GetMapping
     public ResponseEntity<List<Worker>> findAll() {
         List<Worker> list = workRepo.findAll();
+        MessageDto msg = new MessageDto();
+        msg.setMsg(ResponseEntity.ok(list).toString());
+        serviceAmqp.sendToConsume(msg);
         return ResponseEntity.ok(list);
     }
 
