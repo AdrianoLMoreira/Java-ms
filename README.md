@@ -1,6 +1,8 @@
-# Criando e testando containers Docker
+# RabbitMQ
 
-## Criar rede docker para sistema hr
+## Habilitando Move Messages no Rabbit
 ```
-docker network create hr-net
+docker exec -it rabbitmq bash
+
+rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 ```
